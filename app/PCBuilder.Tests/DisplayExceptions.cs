@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using PCBuilder.Domain.Products.Peripherals;
+using FluentAssertions;
 
 namespace PCBuilder.Tests
 {
@@ -11,11 +12,9 @@ namespace PCBuilder.Tests
         [InlineData(0)]
         public void TestIfDisplaySizeIsThrowingExceptionArgumentOutOfRangeException(decimal invalidSize)
         {
-
             Action display = () => new Display(invalidSize, new DisplayResolution("TV", 1920, 1080), PanelType.LCD, 60);
 
-            Assert.Throws<ArgumentOutOfRangeException>(display);
-
+            display.Should().Throw<ArgumentOutOfRangeException>();
         }
 
         [Fact]
@@ -23,8 +22,7 @@ namespace PCBuilder.Tests
         {
             Action display = () => new Display(15m, null, PanelType.OLED, 60);
 
-            Assert.Throws<ArgumentNullException>(display);
-
+            display.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -32,7 +30,7 @@ namespace PCBuilder.Tests
         {
             Action display = () => new Display(15m, new DisplayResolution("TV", 1920, 1080), (PanelType)999, 60);
 
-            Assert.Throws<ArgumentOutOfRangeException>(display);
+            display.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }
