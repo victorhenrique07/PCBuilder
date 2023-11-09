@@ -34,7 +34,8 @@ namespace PCBuilder.Tests
             var display = new Display(15.6m, new DisplayResolution("TV1", 1920, 1080), PanelType.OLED, 60);
 
             var expectedPixelsPerInch = display.Resolution.Rows / display.Height;
-
+            
+            Assert.NotNull(display.Resolution);
             Assert.Equal(display.PixelsPerInch, expectedPixelsPerInch);
         }
 
@@ -43,9 +44,19 @@ namespace PCBuilder.Tests
         {
             var display = new Display(15.6m, new DisplayResolution("TV1", 1920, 1080), PanelType.OLED, 60);
 
-            var expectedAspectRatio = (decimal) display.Resolution.Columns / display.Resolution.Rows;
+            Assert.NotNull(display.Resolution);
+            Assert.Equal((decimal)16/9, display.AspectRatio);
+        }
 
-            Assert.Equal(display.AspectRatio, expectedAspectRatio);
+        [Fact]
+        public void TestIfHeightIsMatching()
+        {
+            var display = new Display(15.6m, new DisplayResolution("TV1", 1920, 1080), PanelType.OLED, 60);
+            
+            var expectecHeight = display.Size / (decimal)Math.Sqrt(Math.Pow((double)display.AspectRatio, 2.0) + 1);
+
+            Assert.NotNull(display.Resolution);
+            Assert.Equal(expectecHeight, display.Height);
         }
     }
 }

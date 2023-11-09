@@ -24,6 +24,7 @@ namespace PCBuilder.Tests
             Action display = () => new Display(15m, null, PanelType.OLED, 60);
 
             Assert.Throws<ArgumentNullException>(display);
+
         }
 
         [Fact]
