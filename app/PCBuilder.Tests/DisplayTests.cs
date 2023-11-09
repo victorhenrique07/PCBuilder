@@ -58,5 +58,17 @@ namespace PCBuilder.Tests
             Assert.NotNull(display.Resolution);
             Assert.Equal(expectecHeight, display.Height);
         }
+
+        [Fact]
+        public void TestIfWidthIsMatching()
+        {
+            var display = new Display(15.6m, new DisplayResolution("TV1", 1920, 1080), PanelType.OLED, 60);
+        }
+
+        [Fact]
+        public void TestIfAreaIsMatching()
+        {
+            var display = new Display(15.6m, new DisplayResolution("TV1", 1920, 1080), PanelType.OLED, 60);
+        }
     }
 }
