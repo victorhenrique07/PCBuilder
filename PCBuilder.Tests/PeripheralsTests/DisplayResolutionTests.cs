@@ -18,5 +18,33 @@ namespace PCBuilder.Tests
 
             expected.Should().BeTrue();
         }
+
+        [Fact]
+        public void TestIfResolutionIsNotEqualsTo()
+        {
+            DisplayResolution displayResolution2 = new DisplayResolution("QHD", 2560, 1440);
+
+            var expected = displayResolution.Equals(displayResolution2);
+
+            expected.Should().BeFalse();
+        }
+
+        [Fact]
+        public void TestIfPixelsIsMatching()
+        {
+            displayResolution.Pixels.Should().Be(displayResolution.Columns * displayResolution.Rows);
+        }
+
+        [Fact]
+        public void TestIfDescriptionIsReturningNameColumnsRows()
+        {
+            displayResolution.Description.Should().Be($"{displayResolution.Name} ({displayResolution.Columns} x {displayResolution.Rows})");
+        }
+
+        [Fact]
+        public void TestIfDescriptionIsEqualsToString()
+        {
+            displayResolution.Description.Should().Be(displayResolution.ToString());
+        }
     }
 }
