@@ -76,6 +76,16 @@ namespace PCBuilder.Domain.Products.MotherboardAndMemory
             return true;
         }
 
+        public virtual void AddSupportedCpuLine(CpuLine cpuLine, bool needsBiosUpdate)
+        {
+            if (cpuLine == null)
+                throw new ArgumentNullException(nameof(cpuLine));
+            
+            SupportedCpuLine supportedCpuLine = new SupportedCpuLine(cpuLine, needsBiosUpdate);
+
+            supportedCpuLines.Add(supportedCpuLine);
+        }
+
         public virtual bool Equals(MotherboardChipset other)
         {
             if (other == null)

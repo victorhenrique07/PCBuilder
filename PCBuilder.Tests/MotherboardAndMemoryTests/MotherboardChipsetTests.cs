@@ -61,6 +61,20 @@ namespace PCBuilder.Tests
             
             expectedFalse.Should().BeFalse();
         }
+
+        [Fact]
+        public void TestIfCpuIsSupported()
+        {
+            CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture("Architecture", manufacturer, "weqweq");
+
+            CpuLine cpuLine = new CpuLine("R5", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+
+            motherboardChipset.AddSupportedCpuLine(cpuLine, false);
+
+            var expectedTrue = motherboardChipset.Supports(cpuLine, out bool needsBiosUpdate);
+
+            expectedTrue.Should().BeTrue();
+        }
         
     }
 }
