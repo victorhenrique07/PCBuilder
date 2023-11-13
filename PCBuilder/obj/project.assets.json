@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/victor/PCBuilder/app/PCBuilder/PCBuilder.csproj",
+      "projectUniqueName": "/home/victor/PCBuilder/PCBuilder/PCBuilder.csproj",
       "projectName": "PCBuilder",
-      "projectPath": "/home/victor/PCBuilder/app/PCBuilder/PCBuilder.csproj",
+      "projectPath": "/home/victor/PCBuilder/PCBuilder/PCBuilder.csproj",
       "packagesPath": "/home/victor/.nuget/packages/",
-      "outputPath": "/home/victor/PCBuilder/app/PCBuilder/obj/",
+      "outputPath": "/home/victor/PCBuilder/PCBuilder/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/victor/.nuget/NuGet/NuGet.Config"

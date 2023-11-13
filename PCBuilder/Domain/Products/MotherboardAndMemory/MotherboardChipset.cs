@@ -68,8 +68,9 @@ namespace PCBuilder.Domain.Products.MotherboardAndMemory
             SupportedCpuLine supportedLine = this.supportedCpuLines.SingleOrDefault(s => s.Line.Equals(cpuLine));
 
             if (supportedLine == null)
+            {
                 return false;
-
+            }
             needsBiosUpdate = supportedLine.NeedsBiosUpdate;
 
             return true;

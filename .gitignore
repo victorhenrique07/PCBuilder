@@ -1,2 +1,4 @@
-bin
-obj
+../PCBuilder/bin/
+../PCBuilder/obj/
+PCBuilder.Tests/bin/
+PCBuilder.Tests/obj/

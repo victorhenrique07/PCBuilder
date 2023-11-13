@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TNnOPeCkqDUZgcUW64ZbhiGncUHpd5Y64eJPX5h2BZ5Mj+AOjHT1Lgbt9fCCpijKLNGH0cT7RI3san6YzS1tjw==",
+  "dgSpecHash": "fWiG0dehFL1B3g9lRUXnwwlH/RNp/u6I+c/VzvkZ9YllW9E1QfFMx6NPkB+6UItbkzdfX5Oqgh7AhHbW1W120g==",
   "success": true,
-  "projectFilePath": "/home/victor/PCBuilder/app/PCBuilder/PCBuilder.csproj",
+  "projectFilePath": "/home/victor/PCBuilder/PCBuilder/PCBuilder.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
