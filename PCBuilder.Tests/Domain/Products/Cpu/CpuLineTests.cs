@@ -9,24 +9,42 @@ namespace PCBuilder.Tests
 {
     public class CpuLineTests
     {
-        static Manufacturer manufacturer = new Manufacturer("string name",
-                                                    "string website",
-                                                    "string twitterProfile",
-                                                    "string facebookProfile",
-                                                    "string instagramProfile", 
-                                                    10.0m, 10.0m, 10.0m, 10.0m, 10.0m);
+        static Manufacturer manufacturer = new Manufacturer(
+            name: "AMD",
+            website: "https://www.amd.com/",
+            twitterProfile: "@AMD",
+            facebookProfile: "AMD",
+            instagramProfile: "amd",
+            warrantyQualityModifier: 1.5m,
+            motherboardDefaultWarranty: 24.0m,
+            motherboardDefaultBiosValueFactor: 0.9m,
+            memoryDefaultOverallQualityFactor: 1.2m,
+            videoCardDefaultWarranty: 36.0m
+        );
 
         static CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture("wqeeqeq", manufacturer, "weqweq");
 
-        static CpuSocket cpuSocket = new CpuSocket("daskljdaslk", manufacturer);
+        static CpuSocket cpuSocket = new CpuSocket("LGA1200", manufacturer);
 
-        CpuLine cpuLine1 = new CpuLine("Cpu1", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+        CpuLine cpuLine1 = new CpuLine(
+            codename: "Core i9-10900K",
+            microarchitecture: cpuMicroarchitecture,
+            socket: cpuSocket,
+            motherboardPricesValueModifier: 5.0m,
+            stabilityValueFactor: 8.0m
+        );
 
         [Fact]
         public void TestIfCpuLineIsEquals()
         {
             // Arrange
-            CpuLine cpuLine2 = new CpuLine("Cpu1", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+            CpuLine cpuLine2 = new CpuLine(
+                codename: "Core i9-10900K",
+                microarchitecture: cpuMicroarchitecture,
+                socket: cpuSocket,
+                motherboardPricesValueModifier: 5.0m,
+                stabilityValueFactor: 8.0m
+            );
 
             // Act
             var expected = cpuLine1.Equals(cpuLine2);

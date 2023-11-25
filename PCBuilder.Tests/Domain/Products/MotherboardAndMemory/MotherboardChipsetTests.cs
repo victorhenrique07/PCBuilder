@@ -10,35 +10,42 @@ namespace PCBuilder.Tests
     public class MotherboardChipsetTests
     {
         static Manufacturer manufacturer = new Manufacturer(
-            "string name",
-            "string website",
-            "string twitterProfile",
-            "string facebookProfile",
-            "string instagramProfile", 
-            10.0m, 10.0m, 10.0m, 10.0m, 10.0m);
+            name: "AMD",
+            website: "https://www.amd.com/",
+            twitterProfile: "@AMD",
+            facebookProfile: "AMD",
+            instagramProfile: "amd",
+            warrantyQualityModifier: 1.5m,
+            motherboardDefaultWarranty: 24.0m,
+            motherboardDefaultBiosValueFactor: 0.9m,
+            memoryDefaultOverallQualityFactor: 1.2m,
+            videoCardDefaultWarranty: 36.0m
+        );
 
         static CpuSocket cpuSocket = new CpuSocket("AM4", manufacturer);
         static MotherboardChipset motherboardChipset = new MotherboardChipset(
-            "name",
-            manufacturer,
-            cpuSocket,
-            123,
-            true,
-            10.0m,
-            10.0m);
+            name: "Z490",
+            manufacturer: manufacturer,
+            cpuSocket: cpuSocket,
+            maxMemoryChannels: 4,
+            supportsOverclocking: true,
+            defaultBiosValueFactor: 10.0m,
+            warrantyPeriod: 10.0m
+        );
 
 
         [Fact]
         public void TestIfMotherBoardIsEqualTo()
         {
             MotherboardChipset motherboardChipset2 = new MotherboardChipset(
-                "name",
-                manufacturer,
-                cpuSocket,
-                123,
-                true,
-                10.0m,
-                10.0m);
+                name: "Z490",
+                manufacturer: manufacturer,
+                cpuSocket: cpuSocket,
+                maxMemoryChannels: 4,
+                supportsOverclocking: true,
+                defaultBiosValueFactor: 10.0m,
+                warrantyPeriod: 10.0m
+            );
 
             var expectedTrue = motherboardChipset.Equals(motherboardChipset2);
 
@@ -49,13 +56,14 @@ namespace PCBuilder.Tests
         public void TestIfMotherBoardIsNotEqualsTo()
         {
             MotherboardChipset motherboardChipset2 = new MotherboardChipset(
-                "name1",
-                manufacturer,
-                cpuSocket,
-                1233,
-                false,
-                11.1m,
-                11.1m);
+            name: "B450",
+            manufacturer: manufacturer,
+            cpuSocket: cpuSocket,
+            maxMemoryChannels: 4,
+            supportsOverclocking: true,
+            defaultBiosValueFactor: 10.0m,
+            warrantyPeriod: 10.0m
+        );
 
             var expectedFalse = motherboardChipset.Equals(motherboardChipset2);
             
@@ -65,9 +73,13 @@ namespace PCBuilder.Tests
         [Fact]
         public void TestIfCpuIsSupported()
         {
-            CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture("Architecture", manufacturer, "weqweq");
+            CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture(
+                codename: "Tiger Lake",
+                manufacturer: manufacturer,
+                manufacturingProcess: "10nm"
+            );
 
-            CpuLine cpuLine = new CpuLine("R5", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+            CpuLine cpuLine = new CpuLine("Ryzen 5 5600", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
 
             motherboardChipset.AddSupportedCpuLine(cpuLine, false);
 
@@ -79,10 +91,14 @@ namespace PCBuilder.Tests
         [Fact]
         public void TestIfCpuIsNotSupported()
         {
-            CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture("Architecture", manufacturer, "weqweq");
+            CpuMicroarchitecture cpuMicroarchitecture = new CpuMicroarchitecture(
+                codename: "Tiger Lake",
+                manufacturer: manufacturer,
+                manufacturingProcess: "10nm"
+            );
 
-            CpuLine cpuLine = new CpuLine("R5", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
-            CpuLine cpuLine2 = new CpuLine("R7", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+            CpuLine cpuLine = new CpuLine("Ryzen 5 5600", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
+            CpuLine cpuLine2 = new CpuLine("Ryzen 7 5800X3D", cpuMicroarchitecture, cpuSocket, 10.0m, 10.0m);
 
             motherboardChipset.AddSupportedCpuLine(cpuLine, false);
 
@@ -103,13 +119,14 @@ namespace PCBuilder.Tests
         public void TestIfIsMotherboardChipSetControllerIsReturningNullCpuSocket()
         {
             Action motherboardChipset2 = () => new MotherboardChipset(
-                "name",
-                manufacturer,
-                null,
-                123,
-                true,
-                10.0m,
-                10.0m);
+                name: "A320M",
+                manufacturer: manufacturer,
+                cpuSocket: cpuSocket,
+                maxMemoryChannels: 4,
+                supportsOverclocking: true,
+                defaultBiosValueFactor: 10.0m,
+                warrantyPeriod: 10.0m
+            );
 
             motherboardChipset2.Should().Throw<ArgumentNullException>();
         }
